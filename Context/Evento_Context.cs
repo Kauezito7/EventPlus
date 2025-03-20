@@ -31,7 +31,10 @@ namespace Event_plus.Context
             }
 
         }
-    
 
+        //internal Instituicao Find(Func<object, bool> value)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
