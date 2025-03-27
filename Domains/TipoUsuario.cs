@@ -7,7 +7,7 @@ namespace Event_plus.Domains
     public class TipoUsuario
     {
         [Key]
-        public int IdTipoUsuario { get; set; }
+        public Guid IdTipoUsuario { get; set; }
 
         [Required(ErrorMessage = "O título do tipo de usuário é obrigatório."), Column(TypeName = "VARCHAR(255)")]
         public string? TituloTipoUsuario { get; set; }

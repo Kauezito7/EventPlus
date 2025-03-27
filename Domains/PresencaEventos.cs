@@ -18,7 +18,7 @@ namespace Event_plus.Domains
 
         [ForeignKey("IdEvento")]
         public Evento? Evento { get; set; }
-
+        public bool Situacao { get; internal set; }
     }
 }
 

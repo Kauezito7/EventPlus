@@ -26,5 +26,9 @@ namespace Event_plus.Domains
         public Instituicao? Instituicao { get; set; }
 
         public PresencaEventos? PresencasEventos { get; set; }
+
+        [Column(TypeName = "TEXT")]
+        [Required(ErrorMessage = "A descricao e obrigatoria!")]
+        public string? Descricao { get; set; }
     }
 }

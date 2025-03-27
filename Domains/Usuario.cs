@@ -23,7 +23,7 @@ namespace Event_plus.Domains
         public string? Senha { get; set; }
 
         [ForeignKey("IdTipoUsuario")]
-        public string? IdTipoUsuario { get; set; }
+        public Guid IdTipoUsuario { get; set; }
         public TipoUsuario? TipoUsuario { get; set; }
 
     }

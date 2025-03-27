@@ -9,6 +9,9 @@ namespace Event_plus.Interfaces
         List<Evento> ListarEventos();
         void AtualizarEvento(Guid id, Evento eventoAtualizado);
         void DeletarEvento(Guid id);
+        List<Evento> ListarPorId(Guid id);
+
+        List<Evento> ListarProximosEventos(Guid id);
 
     }
 }

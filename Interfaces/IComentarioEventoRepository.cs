@@ -6,7 +6,7 @@ namespace Event_plus.Interfaces
     {
         void CadastrarComentario(ComentarioEvento novoComentario);
         ComentarioEvento BuscarPorIdUsuario(Guid UsuarioId, Guid EventoId);
-        List<ComentarioEvento> ListarComentarios(Guid id);
+        List<ComentarioEvento> ListarComentarios(Guid idEvento);
         void DeletarComentario(Guid id);
             
     }

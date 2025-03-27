@@ -16,11 +16,19 @@ namespace Event_plus.Repositories
 
         public void AtualizarTipoEvento(Guid id, TipoEvento tipoEventoAtualizado)
         {
-            TipoEvento tipoEventoBuscado = _context.TipoEvento.Find(id)!;
-
-            if (tipoEventoBuscado != null)
+            try
             {
-                tipoEventoBuscado.TituloTipoEvento = tipoEventoAtualizado.TituloTipoEvento;
+                TipoEvento tipoBuscado = _context.TipoEvento.Find(id)!;
+
+                if (tipoBuscado != null)
+                {
+                    tipoBuscado.TituloTipoEvento = tipoEventoAtualizado.TituloTipoEvento;
+                }
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
         }
@@ -29,13 +37,11 @@ namespace Event_plus.Repositories
         {
             try
             {
-                TipoEvento tipoEventoBuscado = _context.TipoEvento.Find(idTipoEvento)!;
-
-                return tipoEventoBuscado;
+                TipoEvento tipoEvento = _context.TipoEvento.Find(idTipoEvento)!;
+                return tipoEvento;
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -45,13 +51,14 @@ namespace Event_plus.Repositories
         {
             try
             {
+                novoTipoEvento.IdTipoEvento = Guid.NewGuid();
+
                 _context.TipoEvento.Add(novoTipoEvento);
 
                 _context.SaveChanges();
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -60,17 +67,17 @@ namespace Event_plus.Repositories
         {
             try
             {
-                TipoEvento tipoEventoBuscado = _context.TipoEvento.Find(id)!;
-                if (tipoEventoBuscado != null)
-                {
-                    _context.TipoEvento.Remove(tipoEventoBuscado);
-                }
-                _context.SaveChanges();
+                TipoEvento tipoBuscado = _context.TipoEvento.Find(id)!;
 
+                if (tipoBuscado != null)
+                {
+                    _context.TipoEvento.Remove(tipoBuscado);
+                }
+
+                _context.SaveChanges();
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -80,17 +87,16 @@ namespace Event_plus.Repositories
         {
             try
             {
-                List<TipoEvento> listaDeTipos = _context.TipoEvento.Include(g => g.TituloTipoEvento).ToList();
-
-                return listaDeTipos;
+                return _context.TipoEvento
+                    .OrderBy(tp => tp.TituloTipoEvento)
+                    .ToList();
             }
             catch (Exception)
             {
-
                 throw;
             }
 
-            
+
         }
     }
     

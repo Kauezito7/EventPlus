@@ -7,7 +7,7 @@ namespace Event_plus.Domains
     public class ComentarioEvento
     {
         [Key]
-        public int IdComentario { get; set; }
+        public Guid IdComentario { get; set; }
 
         [Required(ErrorMessage = "O campo Exibe é obrigatório.")]
         public bool Exibe { get; set; }
@@ -16,11 +16,11 @@ namespace Event_plus.Domains
         public string? Descricao { get; set; }
 
         [ForeignKey("IdUsuario")]
-        public int IdUsuario { get; set; }
+        public Guid IdUsuario { get; set; }
         public Usuario? Usuario { get; set; }
 
         [ForeignKey("IdEvento")]
-        public int IdEvento { get; set; }
+        public Guid IdEvento { get; set; }
         public Evento? Evento { get; set; }
 
     }

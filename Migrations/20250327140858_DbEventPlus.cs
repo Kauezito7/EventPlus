@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Event_plus.Migrations
 {
     /// <inheritdoc />
-    public partial class EventPlus : Migration
+    public partial class DbEventPlus : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,9 +16,9 @@ namespace Event_plus.Migrations
                 columns: table => new
                 {
                     IdInstituicao = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NomeFantasia = table.Column<string>(type: "VARCHAR(255)", nullable: false),
-                    CNPJ = table.Column<string>(type: "VARCHAR(18)", maxLength: 14, nullable: false),
-                    Endereco = table.Column<string>(type: "VARCHAR(255)", nullable: false)
+                    CNPJ = table.Column<string>(type: "VARCHAR(14)", maxLength: 14, nullable: false),
+                    Endereco = table.Column<string>(type: "VARCHAR(100)", nullable: false),
+                    NomeFantasia = table.Column<string>(type: "VARCHAR(100)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,8 +41,7 @@ namespace Event_plus.Migrations
                 name: "TipoUsuario",
                 columns: table => new
                 {
-                    IdTipoUsuario = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdTipoUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TituloTipoUsuario = table.Column<string>(type: "VARCHAR(255)", nullable: false)
                 },
                 constraints: table =>
@@ -58,7 +57,8 @@ namespace Event_plus.Migrations
                     NomeEvento = table.Column<string>(type: "VARCHAR(255)", nullable: false),
                     DataEvento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdTipoEvento = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdInstituicao = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IdInstituicao = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Descricao = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,8 +85,8 @@ namespace Event_plus.Migrations
                     Nome = table.Column<string>(type: "VARCHAR(255)", nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(255)", nullable: false),
                     Senha = table.Column<string>(type: "VARCHAR(255)", maxLength: 60, nullable: false),
-                    IdTipoUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TipoUsuarioIdTipoUsuario = table.Column<int>(type: "int", nullable: true)
+                    IdTipoUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TipoUsuarioIdTipoUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,13 +102,12 @@ namespace Event_plus.Migrations
                 name: "ComentarioEvento",
                 columns: table => new
                 {
-                    IdComentario = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdComentario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Exibe = table.Column<bool>(type: "bit", nullable: false),
                     Descricao = table.Column<string>(type: "TEXT", nullable: false),
-                    IdUsuario = table.Column<int>(type: "int", nullable: false),
+                    IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UsuarioIdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IdEvento = table.Column<int>(type: "int", nullable: false),
+                    IdEvento = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EventoIdEvento = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -132,7 +131,8 @@ namespace Event_plus.Migrations
                 {
                     IdPresenca = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdEvento = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IdEvento = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Situacao = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

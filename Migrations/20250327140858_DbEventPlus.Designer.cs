@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Event_plus.Migrations
 {
     [DbContext(typeof(Evento_Context))]
-    [Migration("20250313172721_EventPlus")]
-    partial class EventPlus
+    [Migration("20250327140858_DbEventPlus")]
+    partial class DbEventPlus
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,9 @@ namespace Event_plus.Migrations
 
             modelBuilder.Entity("Event_plus.Domains.ComentarioEvento", b =>
                 {
-                    b.Property<int>("IdComentario")
+                    b.Property<Guid>("IdComentario")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdComentario"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -43,11 +41,11 @@ namespace Event_plus.Migrations
                     b.Property<bool>("Exibe")
                         .HasColumnType("bit");
 
-                    b.Property<int>("IdEvento")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdEvento")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdUsuario")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("UsuarioIdUsuario")
                         .HasColumnType("uniqueidentifier");
@@ -69,6 +67,10 @@ namespace Event_plus.Migrations
 
                     b.Property<DateTime>("DataEvento")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("IdInstituicao")
                         .HasColumnType("uniqueidentifier");
@@ -98,15 +100,15 @@ namespace Event_plus.Migrations
                     b.Property<string>("CNPJ")
                         .IsRequired()
                         .HasMaxLength(14)
-                        .HasColumnType("VARCHAR(18)");
+                        .HasColumnType("VARCHAR(14)");
 
                     b.Property<string>("Endereco")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(255)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("NomeFantasia")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(255)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.HasKey("IdInstituicao");
 
@@ -127,6 +129,9 @@ namespace Event_plus.Migrations
 
                     b.Property<Guid>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Situacao")
+                        .HasColumnType("bit");
 
                     b.HasKey("IdPresenca");
 
@@ -155,11 +160,9 @@ namespace Event_plus.Migrations
 
             modelBuilder.Entity("Event_plus.Domains.TipoUsuario", b =>
                 {
-                    b.Property<int>("IdTipoUsuario")
+                    b.Property<Guid>("IdTipoUsuario")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTipoUsuario"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("TituloTipoUsuario")
                         .IsRequired()
@@ -180,8 +183,8 @@ namespace Event_plus.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(255)");
 
-                    b.Property<string>("IdTipoUsuario")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("IdTipoUsuario")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -192,8 +195,8 @@ namespace Event_plus.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("VARCHAR(255)");
 
-                    b.Property<int?>("TipoUsuarioIdTipoUsuario")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("TipoUsuarioIdTipoUsuario")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdUsuario");
 

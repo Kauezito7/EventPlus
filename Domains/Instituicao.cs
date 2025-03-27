@@ -11,15 +11,18 @@ namespace Event_plus.Domains
         [Key]
         public Guid IdInstituicao { get; set; }
 
-        [Required(ErrorMessage = "O nome fantasia da instituição é obrigatório."), Column(TypeName = "VARCHAR(255)")]
-        public string? NomeFantasia { get; set; }
-
-        [Required(ErrorMessage = "O CNPJ da instituição é obrigatório."), Column(TypeName = "VARCHAR(18)")]
+        [Column(TypeName = "VARCHAR(14)")]
+        [Required(ErrorMessage = "Cnpj obrigatório!")]
         [StringLength(14)]
         public string? CNPJ { get; set; }
 
-        [Required(ErrorMessage = "O endereço da instituição é obrigatório."), Column(TypeName = "VARCHAR(255)")]
+        [Column(TypeName = "VARCHAR(100)")]
+        [Required(ErrorMessage = "Endereço obrigatório!")]
         public string? Endereco { get; set; }
+
+        [Column(TypeName = "VARCHAR(100)")]
+        [Required(ErrorMessage = "Nome Fantasia obrigatório!")]
+        public string? NomeFantasia { get; set; }
 
     }
 }

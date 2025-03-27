@@ -9,5 +9,7 @@ namespace Event_plus.Interfaces
         List<TipoUsuario> Listar();
         void Atualizar(Guid id, TipoUsuario tipoUsuarioAtualizado);
         void Deletar(Guid id);
+        TipoUsuario BuscarPorId(Guid id);
+
     }
 }
